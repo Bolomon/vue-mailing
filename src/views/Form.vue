@@ -7,17 +7,26 @@
 			    <div class="col-sm-10">
 			      <input type="email" class="form-control" id="email" v-model="email">
 			    </div>
+			    <div class="invalid-feedback" v-if="error">
+			        {{ error }}
+			    </div>
 			  </div>
              <div class="row mb-3">
 			    <label for="name" class="col-sm-2 col-form-label">Имя</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" id="name" v-model="name">
 			    </div>
+			    <div class="invalid-feedback" v-if="error">
+			        {{ error }}
+			    </div>
 			  </div>
 			    <div class="row mb-3">
 			    <label for="surname" class="col-sm-2 col-form-label">Фамилия</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" id="surname" v-model="surname">
+			    </div>
+			    <div class="invalid-feedback" v-if="error">
+			        {{ error }}
 			    </div>
 			  </div>
 			  <div class="row">
@@ -26,6 +35,9 @@
 	                    <label for="text">Текст:</label>
 	                    <textarea class="form-control" rows="3" name="text" id="text" v-model="text"></textarea>
 	                </div>
+	                <div class="invalid-feedback" v-if="error">
+				        {{ error }}
+				    </div>
 	            </div>
 	        </div>
 	        <button type="submit" class="btn btn-primary m-3">Отправить</button>
@@ -45,7 +57,7 @@
 			}
 		},
 		methods: {
-			async submitHandler() {
+			submitHandler() {
 				const formData = {
 					name: this.name,
 					surname: this.surname,
@@ -53,7 +65,21 @@
 					text: this.text
 				}
 
-				await axios.post('http://localhost:5000/api/send/send', formData);
+				axios.post('http://localhost:5000/api/send/send', formData);
+			}
+		},
+		computed: {
+			error() {
+				if(this.email.trim.length <= 0)
+					return 'Введите email';
+				else if(this.name.trim.length <= 0)
+					return 'Введите имя';
+				else if(this.surname.trim.length <= 0)
+					return 'Введите фамилию';
+				else if(this.text.trim.length <= 0)
+					return 'Введите текст';
+				else
+					return '';
 			}
 		}
 	}

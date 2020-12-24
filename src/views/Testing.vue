@@ -25,7 +25,7 @@
 			}
 		},
 		async mounted() {
-			const data = await axios.get('http://localhost:5000/api/test/show');
+			const data = await axios.get('http://localhost:5000/api/testing/show');
 
 			this.messages = data.data.data;
 		},
@@ -48,20 +48,20 @@
 					block.querySelector('.card-text').contentEditable = false;
 					block.querySelector('.card-text').classList.remove('border');
 					block.querySelector('.btn-primary').innerHTML = 'Изменить';
-					await axios.post(`http://localhost:5000/api/test/update/${id}`, {
+					await axios.post(`http://localhost:5000/api/testing/update/${id}`, {
 						name: block.querySelector('.card-title.name').innerHTML,
 						surname: block.querySelector('.card-title.surname').innerHTML,
 						text: block.querySelector('.card-text').innerHTML
 					});
 
-					const data = await axios.get('http://localhost:5000/api/test/show');
+					const data = await axios.get('http://localhost:5000/api/testing/show');
 					this.messages = data.data.data;
 				}
 			},
 			async deleteHandler(id) {
-				await axios.get(`http://localhost:5000/api/test/delete/${id}`);
+				await axios.get(`http://localhost:5000/api/testing/delete/${id}`);
 				
-				const data = await axios.get('http://localhost:5000/api/test/show');
+				const data = await axios.get('http://localhost:5000/api/testing/show');
 
 				this.messages = data.data.data;
 			}

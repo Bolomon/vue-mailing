@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/send', require('./api/send'));
-app.use('/api/test', require('./api/test'));
+app.use('/api/testing', require('./api/testing'));
 
 async function startServer() {
 	await mongoose.connect('mongodb+srv://user:pass123@cluster0.3b9il.mongodb.net/<dbname>?retryWrites=true&w=majority', {
