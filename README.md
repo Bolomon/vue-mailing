@@ -1,19 +1,16 @@
-# vue
+# Email-рассылка на VueJS
 
-## Project setup
-```
+## Установить зависимости для корневой папки и папки server
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+### Запустить VueJS
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Запустить сервер
+npm run dev
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Для тестирования REST 
+Прописать в URL-строку:
+/test - для показа записей
+/form - для создания записей
